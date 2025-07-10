@@ -1,0 +1,6 @@
+You need a favicon.ico file for the browser tab icon.
+
+You can create one by:
+1. Using an online favicon generator like favicon.io
+2. Converting a small version of your logo to .ico format
+3. Save as "favicon.ico" in the client/public directory

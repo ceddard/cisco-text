@@ -1,0 +1,8 @@
+You need to create a 192x192 pixel PNG image file for the logo.
+
+You can create a simple placeholder by:
+1. Using a graphics tool like Paint, Photoshop, or GIMP
+2. Create a new image with dimensions 192x192 pixels
+3. Fill it with a color (preferably matching your app theme)
+4. Add text or simple icon if desired
+5. Save as PNG with the name "logo192.png" in the client/public directory

@@ -205,3 +205,144 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnpm-debug.log
+.yarn/
+.npm/
+package-lock.json
+yarn.lock
+bun.lockb
+
+# TypeScript
+*.tsbuildinfo
+
+# Build outputs
+dist/
+dist-electron/
+build/
+release/
+out/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.env
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.coverage
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# C/C++ compilation
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.out
+*.app
+
+# Visual Studio / VS Code
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Docker
+docker-compose.override.yml
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Binary files and archives
+*.rar
+*.zip
+*.tar.gz
+*.tgz
+*.7z
+
+# FFmpeg specific
+ffmpeg-7.1.1/ffmpeg
+ffmpeg-7.1.1/*.o
+ffmpeg-7.1.1/*.a
+ffmpeg-7.1.1/*.d
+ffmpeg-7.1.1/*.pc
+ffmpeg-7.1.1/config.h
+ffmpeg-7.1.1/config.mak
+
+# Data files that might be large
+*.csv
+*.xlsx
+*.xls
+*.json
+!package.json
+!tsconfig.json
+!.eslintrc.json
+!*.json.example
+
+# Specific to your projects
+linked-helper.exe
+fuck-interview-code.rar
