@@ -31,31 +31,6 @@ cisco-text/
 - Docker and Docker Compose
 - OpenAI API key
 
-### Installation
-
-#### With Docker (Recommended)
-
-1. Clone the repository
-2. Copy the example environment file:
-   ```bash
-   cp .env.example .env
-   ```
-3. Edit the `.env` file with your OpenAI API key
-4. Run the Docker Compose setup:
-   ```bash
-   # On Linux/macOS
-   ./start-docker.sh
-   
-   # On Windows
-   start-docker.bat
-   ```
-
-This will start:
-- The backend API on http://localhost:8000
-- The frontend on http://localhost
-- Redis for logging on port 6379
-- Redis Commander UI on http://localhost:8081
-
 #### Manual Setup (Development)
 
 1. Clone the repository
@@ -71,27 +46,6 @@ This will start:
 4. Run Redis (either locally or with Docker):
    ```bash
    docker run -d -p 6379:6379 --name cisco-redis redis:alpine
-   ```
-
-### Running the Application Manually
-
-For Windows users, simply run:
-```
-start-all.bat
-```
-
-This will start both the backend server (on port 8000) and the frontend development server (on port 3000).
-
-Alternatively, you can run them separately:
-
-1. Start the backend:
-   ```
-   start-backend.bat
-   ```
-2. Start the frontend:
-   ```
-   cd client
-   start-frontend.bat
    ```
 
 ## API Logging System
