@@ -7,10 +7,7 @@ services:
     restart: unless-stopped
     ports:
       - "8000:8000"
-    depends_on:
-      - redis
     environment:
-      - REDIS_URL=redis://redis:6379/0
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DEBUG=false
     networks:
@@ -37,36 +34,8 @@ services:
     networks:
       - app-network
 
-  redis:
-    image: redis:alpine
-    restart: always
-    ports:
-      - "6380:6379"
-    networks:
-      - evolution-net
-      - default
 
-  redis-commander:
-    image: ghcr.io/joeferner/redis-commander:latest
-    container_name: cisco-text-redis-commander
-    restart: unless-stopped
-    ports:
-      - "8081:8081"
-    environment:
-      - REDIS_HOSTS=local:redis:6379
-    depends_on:
-      - redis
-    networks:
-      - app-network
-      - evolution-net
 
 networks:
-  app-network:
-    driver: bridge
-  evolution-net:
-    driver: bridge
-
-volumes:
-  redis-data:
   app-network:
     driver: bridge

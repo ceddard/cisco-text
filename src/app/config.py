@@ -17,8 +17,6 @@ class Settings(BaseSettings):
     DEBUG: bool = False
 
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
-    REDIS_URL: str = os.getenv("REDIS_URL", "redis://redis:6379/0")
-    REDIS_LOG_TTL: int = int(os.getenv("REDIS_LOG_TTL", 604800))  # 7 days in seconds
 
     @property
     def LLM_CONFIG(self) -> Dict[str, Any]:

@@ -30,23 +30,24 @@ class LoggingMiddleware(BaseHTTPMiddleware):
             "timestamp": start_time,
         }
         
-        await self.redis_service.store_log(f"request:{request_id}", request_log)
+        if not self.redis_service.connection_error:
+            await self.redis_service.store_log(f"request:{request_id}", request_log)
         
         response = await self._get_response(request, call_next)
         
         process_time = time.time() - start_time
-        
-        response_body = response.body.decode() if hasattr(response, "body") else ""
-        response_log = {
-            "request_id": request_id,
-            "status_code": response.status_code,
-            "headers": dict(response.headers),
-            "body": self._parse_response_body(response_body),
-            "process_time": process_time,
-            "timestamp": time.time(),
-        }
-        
-        await self.redis_service.store_log(f"response:{request_id}", response_log)
+        if not self.redis_service.connection_error:
+            response_body = response.body.decode() if hasattr(response, "body") else ""
+            response_log = {
+                "request_id": request_id,
+                "status_code": response.status_code,
+                "headers": dict(response.headers),
+                "body": self._parse_response_body(response_body),
+                "process_time": process_time,
+                "timestamp": time.time(),
+            }
+            
+            await self.redis_service.store_log(f"response:{request_id}", response_log)
         
         logger.info(
             f"RequestID: {request_id} | "

@@ -5,20 +5,9 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import uvicorn
 from fastapi import FastAPI
-from app.routers import chat, logs
+from app.routers import chat
 from app.config import settings
-from app.middleware.logging_middleware import LoggingMiddleware
-from app.services.redis_service import RedisService
-import logging
 import time
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-)
-logger = logging.getLogger(__name__)
-
-redis_service = RedisService(redis_url=settings.REDIS_URL)
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -26,20 +15,7 @@ app = FastAPI(
     version=settings.APP_VERSION,
 )
 
-@app.on_event("startup")
-async def startup_event():
-    await redis_service.initialize()
-    logger.info("Application startup: Redis service initialized")
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    await redis_service.close()
-    logger.info("Application shutdown: Redis service closed")
-
-app.add_middleware(LoggingMiddleware, redis_service=redis_service)
-
 app.include_router(chat.router)
-app.include_router(logs.router)
 
 
 @app.get("/")
@@ -67,22 +43,8 @@ async def health_check():
     health = {
         "status": "healthy",
         "timestamp": time.time(),
-        "version": settings.APP_VERSION,
-        "services": {
-            "redis": "unknown"
-        }
+        "version": settings.APP_VERSION
     }
-    
-    try:
-        if redis_service and redis_service.redis:
-            await redis_service.redis.ping()
-            health["services"]["redis"] = "healthy"
-        else:
-            health["services"]["redis"] = "not initialized"
-    except Exception as e:
-        health["services"]["redis"] = f"unhealthy: {str(e)}"
-        health["status"] = "degraded"
-    
     return health
 
 
